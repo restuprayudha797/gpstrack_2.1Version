@@ -167,7 +167,7 @@
             <a href="" class="btn btn-danger">
               BATALKAN
             </a>
-            <a href="" class="btn btn-success">
+            <a href="<?= base_url('admin/selesai') ?>" class="btn btn-success">
               SELESAIKAN
             </a>
           <?php elseif ($row['role_payment'] == 1) : ?>
@@ -178,7 +178,7 @@
             <a href="" class="btn btn-danger">
               BATALKAN
             </a>
-            <a href="" class="btn btn-success">
+            <a href="<?= base_url('admin/selesai') ?>" class="btn btn-success">
               SELESAIKAN
             </a>
           <?php else : ?>
