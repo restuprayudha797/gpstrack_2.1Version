@@ -39,6 +39,11 @@
 
 <!-- Custom Theme Scripts -->
 <script src="<?= base_url('assets/backend/') ?>build/js/custom.min.js"></script>
+<script>
+    setInterval(function() {
+        document.getElementById("notification").className = "d-none";
+    }, 6000);
+</script>
 </body>
 
 </html>

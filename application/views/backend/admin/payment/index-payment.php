@@ -52,20 +52,17 @@
 
                     // SET STATUS
                     if ($row['role_payment'] == 1) {
-
-                      $status = "PROSES";
+                      $status = "PENDING";
                     } elseif ($row['role_payment'] == 2) {
                       $status = "BERHASIL";
                     } elseif ($row['role_payment'] == 3) {
                       $status = "DITOLAK";
                     } elseif ($row['role_payment'] == 4) {
-                      $status = "PROSES COD";
+                      $status = "PENDING COD";
                     } elseif ($row['role_payment'] == 5) {
-                      $status = "BERHASIL COD";
+                      $status = "COD BERHASIL";
                     } elseif ($row['role_payment'] == 6) {
                       $status = "COD DITOLAK";
-                    } elseif ($row['role_payment'] == 7) {
-                      $status = "PENDING";
                     }
 
                     ?>
@@ -107,20 +104,17 @@
 
   // SET STATUS
   if ($row['role_payment'] == 1) {
-
-    $status = "PROSES";
+    $status = "PENDING";
   } elseif ($row['role_payment'] == 2) {
     $status = "BERHASIL";
   } elseif ($row['role_payment'] == 3) {
     $status = "DITOLAK";
   } elseif ($row['role_payment'] == 4) {
-    $status = "PROSES COD";
+    $status = "PENDING COD";
   } elseif ($row['role_payment'] == 5) {
-    $status = "BERHASIL COD";
+    $status = "COD BERHASIL";
   } elseif ($row['role_payment'] == 6) {
     $status = "COD DITOLAK";
-  } elseif ($row['role_payment'] == 7) {
-    $status = "PENDING";
   }
 
 
@@ -163,23 +157,19 @@
           </div>
         </div>
         <div class="modal-footer">
-          <?php if ($row['role_payment'] == 7) : ?>
-            <a href="" class="btn btn-danger">
+          <?php if ($row['role_payment'] == 1) : ?>
+            <a href="<?= base_url('admin/Prosess_Data/cancel/' . $row['id_payment']) ?>" class="btn btn-danger">
               BATALKAN
             </a>
-            <a href="<?= base_url('admin/selesai') ?>" class="btn btn-success">
-              SELESAIKAN
+            <a href="<?= base_url('admin/Prosess_Data/done/' . $row['id_payment']) ?>" class="btn btn-success">
+              KONFIRMASI
             </a>
-          <?php elseif ($row['role_payment'] == 1) : ?>
-
-            <a href="<?= base_url("admin/Prosess_Data/pending/" .  $row['id_payment']) ?>" class="btn btn-warning">
-              PENDING
-            </a>
-            <a href="" class="btn btn-danger">
+          <?php elseif ($row['role_payment'] == 4) : ?>
+            <a href="<?= base_url('admin/Prosess_Data/cancelCod/') . $row['id_payment'] ?>" class="btn btn-danger">
               BATALKAN
             </a>
-            <a href="<?= base_url('admin/selesai') ?>" class="btn btn-success">
-              SELESAIKAN
+            <a href="<?= base_url('admin/Prosess_Data/doneCod/') . $row['id_payment'] ?>" class="btn btn-success">
+              KONFIRMASI
             </a>
           <?php else : ?>
           <?php endif ?>

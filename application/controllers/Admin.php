@@ -55,10 +55,4 @@ class Admin extends CI_Controller
 
         $this->adm->Prosess_Data($state, $id);
     }
-    public function selesai()
-    {
-
-
-        echo "halaman selesai";
-    }
 }

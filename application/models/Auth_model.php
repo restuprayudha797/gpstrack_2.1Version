@@ -88,7 +88,7 @@ class Auth_model extends CI_Model
             'date_created' => time()
         ];
 
-        $token = bin2hex(random_bytes(20));
+        $token = password_hash('token', PASSWORD_DEFAULT);
 
         $data_activationToken = [
             'email' => $email,
