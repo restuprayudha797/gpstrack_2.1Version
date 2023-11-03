@@ -8,6 +8,7 @@ class Admin_model extends CI_Model
 
     private $PAYMENT = 'payment';
     private $USER_ACTIVE = 'user_active';
+    private $USER = 'users';
 
 
     public function getAllPaymentData()
@@ -54,7 +55,6 @@ class Admin_model extends CI_Model
                 $noSeri = password_hash($this->input->post('password'), PASSWORD_DEFAULT);
 
                 $data = [
-                    'no_seri' => $noSeri,
                     'email' => $paymentData['email'],
                     'time_out' => $time
 
@@ -104,7 +104,7 @@ class Admin_model extends CI_Model
 
         // add new table for user tracking
         $tbMarker = [
-            'id' => [
+            'id_marker' => [
                 'type' => 'INT',
                 'constraint' => 11,
                 'auto_increment' => TRUE
@@ -130,16 +130,16 @@ class Admin_model extends CI_Model
 
             ]
         ];
-        $this->dbforge->add_key('id', TRUE);
+        $this->dbforge->add_key('id_marker', TRUE);
         $this->dbforge->add_field($tbMarker);
-        $markerCreate = $this->dbforge->create_table('tb_marker_' . $markerName);
+        $markerCreate = $this->dbforge->create_table('marker_' . $markerName);
         // end add table tracking
 
         if ($markerCreate) {
             $ledStatusName = $userActive['id_active'];
             // add new table for user power
             $ledStatus = [
-                'ID' => [
+                'id_ledStatus_' => [
                     'type' => 'INT',
                     'constraint' => 11,
                     'auto_increment' => TRUE
@@ -155,7 +155,7 @@ class Admin_model extends CI_Model
 
                 ]
             ];
-            $this->dbforge->add_key('ID', TRUE);
+            $this->dbforge->add_key('id_ledStatus_', TRUE);
 
             $this->dbforge->add_field($ledStatus);
             $ledStatusCreate = $this->dbforge->create_table('ledStatus_' . $ledStatusName);
@@ -166,21 +166,28 @@ class Admin_model extends CI_Model
                     'color' => 'blue',
                     'state' => '1'
                 ];
-                $this->db->insert('ledStatus_' . $ledStatusName, $data1);
+                $setdata1 = $this->db->insert('ledStatus_' . $ledStatusName, $data1);
 
-                $data2 = [
-                    'color' => 'red',
-                    'state' => '1'
-                ];
-                $this->db->insert('ledStatus_' . $ledStatusName, $data2);
+                if ($setdata1) {
+                    $data2 = [
+                        'color' => 'red',
+                        'state' => '1'
+                    ];
+                    $setdata2 = $this->db->insert('ledStatus_' . $ledStatusName, $data2);
 
-                $data3 = [
-                    'color' => 'green',
-                    'state' => '1'
-                ];
+                    if ($setdata2) {
 
+                        $data3 = [
+                            'color' => 'green',
+                            'state' => '1'
+                        ];
+                        $setdata3 = $this->db->insert('ledStatus_' . $ledStatusName, $data3);
 
-                $this->db->insert('ledStatus_' . $ledStatusName, $data3);
+                        if ($setdata3) {
+                            $update =   $this->db->set('is_active', 3)->where('email', $userActive['email'])->update($this->USER);
+                        }
+                    }
+                }
             } else {
 
                 die;

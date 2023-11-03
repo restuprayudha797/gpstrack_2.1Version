@@ -58,8 +58,6 @@ $route = array(
     'verify' => 'auth/verify',
     'bayar' => 'auth/pay',
     'keluar' => 'logout'
-
-
 );
 
 $route['default_controller'] = 'home';
