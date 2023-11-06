@@ -55,7 +55,7 @@ class User extends CI_Controller
 
         $user = $this->db->get_where('users', ['email' => $this->session->userdata('email')])->row_array();
         $userActive = $this->db->get_where('user_active', ['email' => $user['email']])->row_array();
-        $ledStatus  = $this->db->get('ledstatus_' . $userActive['id_active'])->result_array();
+        $ledStatus  = $this->db->get('ledStatus_' . $userActive['id_active'])->result_array();
 
 
         $data = [
