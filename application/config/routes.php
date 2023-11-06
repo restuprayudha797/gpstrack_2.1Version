@@ -57,7 +57,12 @@ $route = array(
     'register' => 'auth/register',
     'verify' => 'auth/verify',
     'bayar' => 'auth/pay',
-    'keluar' => 'logout'
+    'keluar' => 'logout',
+    'lokasi' => 'user/location',
+    'saklar' => 'user/saklar',
+    'on' => 'user/on',
+    'off' => 'user/off',
+    'dashboard' => 'user'
 );
 
 $route['default_controller'] = 'home';
